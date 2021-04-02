@@ -47,7 +47,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        Log::error($exception);
+        Log::error('Handler:'.$exception);
         if ($exception instanceof TimeoutException) {
             return response()->json([
                 'status' => 'timeout',

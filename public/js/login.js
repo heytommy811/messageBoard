@@ -56,11 +56,13 @@ $(function () {
 
 		// メールアドレスの入力値チェック
 		if (!$('[name=mail]').val()) {
+			setTextError($('[name=mail]'), 'メールアドレスを入力してください');
 			result = true;
 		}
 
 		// パスワードの入力値チェック
 		if (!$('[name=password]').val()) {
+			setTextError($('[name=password]'), 'パスワードを入力してください');
 			result = true;
 		}
 

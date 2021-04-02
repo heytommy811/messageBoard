@@ -14,6 +14,9 @@ use App\modules\common\SystemSetting;
 use App\modules\common\ResponseUtils;
 use Carbon\Carbon;
 
+use App\Http\Requests\LoginRequest;
+
+use App\exceptions\MessageException;
 use Exception;
 
 class LoginController extends Controller
@@ -50,36 +53,25 @@ class LoginController extends Controller
     /**
      * ログイン処理（post）
      */
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
+        // パラメータを取得する
+        $mail = $request->input('mail');
+        $password = $request->input('password');
+            
+        // システム設定情報を取得する
+        $sys_settings = SystemSetting::getSettings();
+        
+        // メールアドレスでアカウント情報を検索する
+        $account_info = St_act::getByMail($mail);
+        $this->loginValidater($account_info, $password, $sys_settings);
         try {
 
-            // パラメータを取得する
-            $mail = $request->input('mail');
-            $password = $request->input('password');
-
-            if (empty($mail) || empty($password)) {
-                Log::error(sprintf('mail or password is Empty. [mail:%s] [password:%s]', $mail, $password));
-                // 認証失敗の場合はログイン画面にリダイレクトする
-                return redirect("login")->with('message', 'メールアドレス、またはパスワードの入力が不正です。');
-            }
-
-            // システム設定情報を取得する
-            $sys_settings = SystemSetting::getSettings();
-            
-            // メールアドレスでアカウント情報を検索する
-            $account_info = St_act::getByMail($mail);
-            $login_result = $this->loginValidater($account_info, $password, $sys_settings);
-            if (!empty($login_result)) {
-                // 認証失敗の場合はログイン画面にリダイレクトする
-                if ($account_info != null) {
-                    // 存在しないメールアドレスを入力された場合はnullになる
-                    $account_info->save();
-                }
-                return redirect("login")->with('message', $login_result);
-            }
-
-            // ログイン日時を更新する
+            // ログイン成功時は ログイン失敗をリセットして日時を更新する
+            $account_info->login_fail_cnt = 0;
+            $account_info->login_fail_dt = null;
+            $account_info->login_lock_cnt = 0;
+            $account_info->login_lock_dt = null;
             $account_info->last_login_dt = Carbon::now();
             $account_info->save();
 
@@ -146,11 +138,6 @@ class LoginController extends Controller
         $limit_login_fail_minutes = $sys_settings['limit_login_fail_minutes'];
         $limit_login_lock_minutes = $sys_settings['limit_login_lock_minutes'];
 
-        if ($account_info == null) {
-            // 有効なメールアドレスが登録されていない
-            return $message_login_fail;
-        }
-
         // アカウントロック中
         if ($account_info->account_lock == '1' ) {
             return $message_account_lock;
@@ -195,15 +182,10 @@ class LoginController extends Controller
                 $account_info->login_fail_cnt = 1;
                 $account_info->login_fail_dt = Carbon::now();
             }
-            return $message_login_fail;
+            $account_info->save();
+            throw new MessageException($message_login_fail, 'login');
+            // return $message_login_fail;
         }
-
-        //ログイン成功時は ログイン失敗をリセット
-        $account_info->login_fail_cnt = 0;
-        $account_info->login_fail_dt = null;
-        $account_info->login_lock_cnt = 0;
-        $account_info->login_lock_dt = null;
-        return '';
     }
 
     /**

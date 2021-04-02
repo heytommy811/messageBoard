@@ -14,14 +14,14 @@
     box-shadow: 0 0 10px rgba(0,0,0,.5);
     margin-top: 100px;
 }
-.login-form li {
+.login-form > form > ul > li {
     position: relative;
     margin: 40px 0;
 }
-.login-form li:nth-child(2) {
+.login-form > form > ul > li:nth-child(2) {
     margin-top: 40px;
 }
-.login-form li:nth-last-child(1) {
+.login-form > form > ul > li:nth-last-child(1) {
     margin-bottom: 0;
 }
 li .input-label-wrapper > label {

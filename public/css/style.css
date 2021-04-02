@@ -614,6 +614,13 @@ ul.menu li.active {
     display: none;
     margin: 10px 0;
 }
+.error-message li:not(:nth-child(1)) {
+    margin-top: 5px;
+}
+.error-message li {
+    color: rgba(255, 90, 90, 1);
+    font-weight: bold;
+}
 .dialog .error-message {
     text-align: center;
 }
@@ -735,6 +742,9 @@ h2.title.icon::before {
     font-size: .7em;
     font-weight: normal;
     z-index: 999;
+}
+.text-error > .input-label-wrapper > label {
+    color: rgba(255, 90, 90, 1);
 }
 
 /* HACK cropper.css */

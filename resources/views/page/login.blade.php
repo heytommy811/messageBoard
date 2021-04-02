@@ -23,6 +23,15 @@
                             {{ session('message') }}
                         </div>
                     @endif
+                    @if ($errors->any())
+                        <div class="error-message">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <ul>
                         <li>
                             <input type="email" autocapitalize="off" autoComplete="off" name="mail" class="text-mail" />
