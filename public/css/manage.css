@@ -1,0 +1,78 @@
+﻿.account-request ul,
+.system-settings ul {
+    border: solid 1px;
+    padding: 5px;
+}
+.account-request ul li,
+.system-settings ul li {
+    display: table;
+    width: 100%;
+    padding-top: 3px;
+    border-top: solid 1px;
+}
+.account-request ul li.top,
+.system-settings ul li.top {
+    border-top: none;
+    border-bottom: solid 1px;
+}
+.account-request ul li div,
+.system-settings ul li div {
+    display: table-cell;
+}
+
+.account-request ul li div.name {
+    width: 300px;
+}
+.account-request ul li div.date {
+    width: 180px;
+    text-align: center;
+}
+.account-request ul li div.mail {
+    width: calc(100% - 580px);
+}
+.account-request ul li div.update {
+    width: 60px;
+    text-align: center;
+}
+
+.system-settings ul li div.id {
+    width: 30px;
+}
+.system-settings ul li div.key {
+    width: 300px;
+}
+.system-settings ul li div.value {
+    width: calc(100% - 400px);
+}
+.system-settings ul li div.update {
+    width: 60px;
+    text-align: center;
+}
+
+.search-keyword {
+    width: 100%;
+    display: table;
+}
+.search-keyword .label {
+    display: table-cell;
+    width: 160px;
+}
+.search-keyword input {
+    display: table-cell;
+    width: calc(100% - 230px);
+}
+.search-keyword button {
+    display: table-cell;
+    width: 60px;
+    margin-left: 10px;
+}
+.user-search-result {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+}
+.user-search-result th,
+.user-search-result td {
+    border: solid 1px;
+    text-align: center;
+}

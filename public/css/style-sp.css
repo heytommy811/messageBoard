@@ -1,0 +1,448 @@
+﻿html {
+    height: 100%;
+}
+body{
+    height: 100%;
+    margin: 0px;
+}
+ul {
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+}
+.template {
+    display: none;
+}
+h2 {
+    margin: 0;
+}
+* {
+   color: rgb(80, 80, 80); 
+   font-family: 游ゴシック体, 'Yu Gothic', YuGothic, 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro', メイリオ, Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+}
+
+input[type="text"],
+input[type="password"] {
+    height: 50px;
+    width: 100%;
+    border: solid 1px grey;
+    border-radius: 7px;
+    font-size: 16px;
+    text-indent: 0.3em;
+    box-sizing: border-box;
+}
+
+/* input 系のフォーカス */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(128,128,128,.5);
+}
+input[type="radio"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.15rem rgba(128,128,128,.5);
+}
+/* テキストエリアのフォーカス */
+textarea:focus {
+    outline: none;
+}
+.textarea-focus {
+    box-shadow: 0 0 0 0.15rem rgba(128,128,128,.5);
+}
+/* ローディング用のクラス */
+.loading {
+    display: none;
+    position: fixed;
+    background-color: rgb(210, 210, 210);
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    opacity: 0.5;
+    z-index: 951;
+}
+.loading .loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+}
+.loading .loader .loader-inner div {
+    background-color: #00cc99 !important;
+}
+/* 共通枠線 */
+.mb-border {
+    border: solid 3px rgb(220,220,220);
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+.mb-border-top {
+    border-top: dashed 1px rgb(220,220,220);
+    box-sizing: border-box;
+}
+/* ボタンデザイン */
+.button {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    height: 50px;
+    border-radius: 7px;
+    outline: none
+}
+.button.reaction:focus {
+    box-shadow: 0 0 0 0.15rem rgba(0,204,153,.5);
+}
+
+.bt1 {
+    background-color: #00cc99;
+    color: #fff;
+    border: solid 1px #00cc99;
+}
+
+.bt2 {
+    background-color: #fff !important;
+    color: #00cc99 !important;
+    border: solid 1px #00cc99 !important;
+}
+
+.buttons {
+    display: inline-block;
+    width: 100%;
+    margin-top: 50px;
+}
+.buttons button {
+    margin-bottom: 20px;
+}
+.buttons button.bottom {
+    margin-bottom: 10px;
+}
+.dialog-buttons {
+    margin-top: 10px;
+}
+.dialog-buttons button {
+    margin-bottom: 10px;
+}
+
+.dialog-button-div {
+    margin-top: 10px;
+    text-align: right;
+}
+.dialog-button-ul {
+    margin-top: 10px;
+    display: table;
+    width: 100%;
+}
+.dialog-button-ul li {
+    display: table-cell;
+    box-sizing: border-box;
+    width: 50%;
+}
+.dialog-button-ul li.left {
+    padding-right: 5px;
+}
+.dialog-button-ul li.right {
+    padding-left: 5px;
+}
+.dialog-button {
+    height: 40px;
+}
+.button_cancel {
+}
+
+
+/* 範囲外のテキストを…で表示 */
+.text-overflow-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* perfect-scroll-barのカラー */
+.ps__rail-y {
+    width: 8px !important;
+    background-color: rgb(140, 255, 226)!important;
+}
+.ps__thumb-y {
+    width: 5px !important;
+    background-color: rgb(0, 204, 153)!important;
+}
+
+/* header */
+.header {
+    height: 60px;
+    border-bottom: solid 1px grey;
+}
+.header-inner {
+    height: 100%;
+    position: relative;
+    background-color: rgb(0, 204, 153);
+}
+.menu {
+    text-align: center;
+    position: absolute;
+    top: 15px;
+    left: 10px;
+}
+.menu-panel {
+    display: none;
+    position: absolute;
+    background-color: rgb(210, 255, 230);
+    border: solid 1px rgb(220, 220, 220);
+    border-radius: 3px;
+    top: 65px;
+    left: 10px;
+    z-index: 950;
+}
+
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 40px;
+  height: 30px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+.menu-trigger span:nth-of-type(1) {
+  top: 0;
+}
+.menu-trigger span:nth-of-type(2) {
+  top: 20px;
+}
+.menu-trigger span:nth-of-type(3) {
+  bottom: 0;
+}
+.menu-trigger span:nth-of-type(2) {
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.menu-trigger.active span:nth-of-type(1) {
+  -webkit-transform: translateY(20px) rotate(-315deg) scale(.8);
+  transform: translateY(20px) rotate(-315deg) scale(.8);
+  top: -7px;
+}
+.menu-trigger.active span:nth-of-type(2) {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: 3px solid #fff;
+  border-radius: 50%;
+}
+.menu-trigger.active span:nth-of-type(3) {
+  -webkit-transform: translateY(-20px) rotate(315deg) scale(.8);
+  transform: translateY(-20px) rotate(315deg) scale(.8);
+  bottom: -7px;
+}
+
+.list-menu {
+    height: auto;
+}
+
+.item-menu {
+    max-width: 250px;
+    min-width: 150px;
+    height: 45px;
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: dashed 0.5px rgb(200,200,200);
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+.item-menu.account {
+    border-bottom: solid 0.5px rgb(200, 200, 200);
+    height: 60px;
+}
+.item-menu.top-none {
+    border-top: none;
+}
+
+.title-menu > span:hover,
+.item-menu:hover {
+    cursor: pointer;
+    color: rgb(127, 127, 127);
+}
+
+#header-inner .logo {
+    cursor: pointer;
+    left: 0px; 
+    right: 0px; 
+    margin: auto;
+    width: 65%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    background-image: url(../img/logo.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+.account {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.account-icon {
+    border-radius: 50%;
+    border: solid 1px grey;
+    box-sizing: border-box;
+}
+.header-icon {
+    width: 40px;
+    height: 40px;
+}
+.account-name {
+    text-indent: 1em;
+    font-size: 14px;
+}
+
+/* パンくずリスト */
+.bread-crumb-list {
+    margin-top: 5px;
+    min-height: 20px;
+}
+.bread-crumb-li {
+    display: inline-flex;
+    height: 20px;
+    font-weight: bold;
+    margin-right: 3px;
+    font-size: 10px;
+    vertical-align: top;
+    align-items: center;
+}
+.bread-crumb-li.link {
+    color: blue;
+    font-size: 14px;
+}
+.bread-crumb-li.current {
+    font-size: 14px;
+}
+.bread-crumb-li.link:hover {
+    cursor: pointer;
+    color: red;
+}
+
+/* Dialog */
+#error_dialog {
+    min-height: 0px !important;
+}
+#error_dialog .message {
+    /* ダイアログ内のメッセージのスタイル */
+}
+.button_ok {
+    width: 80px;
+}
+
+.ui-widget-header {
+    border: solid 1px #00cc99 !important;
+    background: #00cc99 !important;
+    padding: 0.2em 1em !important;
+}
+.jquery-ui-dialog-common {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: 7px !important;
+    border: solid 3px #00cc99 !important;
+    padding: 0px !important;
+}
+
+/* コンテンツ共通 */
+.main-contents {
+    max-width: 900px;
+    margin: auto;
+    padding: 0px 10px;
+}
+.content {
+    display: inline-block;
+    width: 100%;
+}
+.error-message {
+    border: solid 2px rgb(247, 150, 70);
+    border-radius: 7px;
+    background-color: rgb(253, 234, 218);
+    padding: 5px;
+    font-size: 12px;
+    display: none;
+}
+.error-message.show {
+    display: block !important;
+}
+
+/* リスト横並び */
+.horizon ul {
+    font-size: 0;
+}
+.horizon li {
+    display: inline-block;
+}
+
+/* エラーデザイン */
+.text-error {
+    background-color: lightcoral;
+}
+
+/* インプット共通 */
+.input-text {
+    border: solid 1px grey;
+    border-radius: 7px;
+    width: 100%;
+    height: 30px;
+    font-size: 1.2em;
+    text-indent: 0.5em;
+}
+
+/* HACK cropper.css */
+.cropper-dashed.dashed-h,
+.cropper-dashed.dashed-v {
+    border: none;
+}
+.cropper-face.cropper-move {
+    border: dotted 3px #000;
+    border-radius: 50%;
+    box-sizing: border-box;
+    opacity: 0.3;
+}
+.cropper-container {
+    background-image: none !important;
+    background-color: #000 !important;
+}
+
+#icon_image {
+    padding: 5px 10px;
+    min-width: 210px;
+    min-height: 210px !important;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* 画面外に表示したい場合 */
+.out-of-display {
+    position: fixed;
+    top: -99999999;
+}
+
+/* メニューアイコン */
+.menu-img {
+    width: 30px;
+    height: 30px;
+    background-image: url(../img/menu.png);
+    background-position: center;
+    background-size: contain;
+}

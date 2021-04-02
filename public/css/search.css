@@ -1,0 +1,88 @@
+﻿/* 検索 */
+.content.search {
+    left: 100%;
+}
+.search-contents-inner {
+    max-width:600px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 0 10px;
+}
+.search-keyword {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.search-keyword input {
+    border: solid .5px rgba(120,120,120, .5);
+    border-radius: 20px;
+    text-indent: 1em;
+}
+.search-keyword input:focus {
+    border: solid .5px rgba(120,120,120, .5);
+}
+.search-keyword span.search-icon {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    height: 100%;
+    width: 35px;
+    background-image: url(../img/search.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px;
+    cursor: pointer;
+}
+.search-results ul {
+    margin-top: 30px;
+}
+.search-results li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 10px;
+    box-sizing: border-box;
+    margin: 20px 0;
+    animation: search-results-animation .5s ease;
+    border: solid 1px rgb(204, 208, 213);
+    background: #fff;
+    box-shadow: 0px 0px 3px rgba(0,0,0,.2);
+}
+
+.search-results li .label {
+    width: calc(100% - 80px);
+}
+.search-results li .creater {
+    font-size: .8em;
+    color: rgba(150, 150, 150, 1);
+}
+.search-results li .title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.search-results button {
+    width: 80px;
+}
+.search-results button.member {
+    cursor: default;
+    animation: none;
+    background: rgba(150, 150, 150, 1);
+    border-color: rgba(150, 150, 150, 1);
+}
+button.request {
+    pointer-events: none;
+}
+
+@keyframes search-results-animation {
+    0% {
+        transform: translateY(50%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

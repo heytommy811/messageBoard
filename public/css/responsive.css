@@ -1,0 +1,373 @@
+/* レスポンシブ対応 */
+@media screen and (max-width: 500px) {
+    * {
+        font-size: 16px;
+        -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+    body {
+        min-width: 100vw;
+    }
+    .button {
+        font-size: 1em;
+        padding: 0;
+    }
+    ul.infomation,
+    ul.board {
+        margin-top: 10px;
+    }
+    /* ログイン */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        font-size: 16px;
+        text-indent: 5px;
+    }
+    .main-contents form .content {
+        width: 100vw;
+        padding: 20px;
+        margin-top: 10px;
+        box-sizing: border-box;
+    }
+    .login-form {
+        padding-left: 10px;
+        padding-right: 10px;
+        box-shadow: none;
+        background: none;
+        margin-top: 0;
+    }
+    header {
+        box-shadow: 0 0px 10px rgba(0,0,0,.2);
+    }
+    .logo {
+        width: 120px;
+    }
+    .account > .account-menu {
+        position: fixed;
+        top: 0;
+        left: 100vw;
+        width: 100vw;
+        height: 100vh !important;
+        transition: .5s;
+        padding: 0;
+        /* background: rgba(0,0,0,.5); */
+    }
+    .account > .account-menu.show {
+        transform: translateX(-100vw);
+    }
+    .account > .account-menu ul {
+        margin: 0;
+        width: 280px;
+        height: 100vh;
+        float: right;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
+        border-radius: initial;
+        border-left: solid 1px rgb(210, 210, 210);
+
+    }
+    .account > .account-menu ul::before {
+        display: none;
+    }
+    .account ul li {
+        padding: 20px 10px;
+    }
+    .content-inner {
+        width: 100%;
+        margin-top: 0;
+        padding: 0;
+        box-sizing: border-box;
+        min-width: initial;
+    }
+    .massage-board-list {
+        margin: 0;
+    }
+    .content.search {
+        padding: 10px;
+    }
+    .infomation {
+        padding: 10px 0;
+    }
+    .infomation h2.infomation-icon {
+        padding: 5px 0;
+    }
+    header {
+        background-color: #fff;
+    }
+    .header-inner {
+        width: 100%;
+    }
+    #header-inner .logo {
+        font-size: 16px;
+        width: 130px;
+        font-weight: bold;
+        color: rgb(0, 204,153);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    header ul.menu {
+        padding: 0;
+    }
+    header .account {
+        margin-right: 10px;
+    }
+    ul.menu li {
+        transition: initial;
+        font-size: 0;
+        width: 32px;
+        padding: 0;
+        margin: 0 10px;
+        height: 60px;
+    }
+    ul.menu li::after {
+        display: none;
+    }
+    ul.menu li.active {
+        background-color: #fff;
+    }
+    ul.menu li:nth-child(1) {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-image: url(../img/sp-home-icon.svg);
+        margin-right: 5px;
+    }
+    ul.menu li.active:nth-child(1) {
+        background-image: url(../img/sp-home-icon-select.svg);
+    }
+    ul.menu li:nth-child(2) {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        background-image: url(../img/search.svg);
+        margin-left: 5px;
+    }
+    ul.menu li.active:nth-child(2) {
+        background-image: url(../img/search-select.svg);
+    }
+
+    .content.home,
+    .content.board,
+    .content.board,
+    .content.board {
+        background-color: rgba(242, 252, 250);
+    }
+    .message-page,
+    .massage-board-list,
+    .message-list {
+        background: none;
+    }
+
+    /* ダイアログ */
+    .cropper-dialog .dialog-contents,
+    .dialog .dialog-contents {
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        padding: 0;
+        border-radius: initial;
+        overflow-y: auto;
+    }
+    .dialog-contents::before {
+        display: none;
+    }
+    .dialog-contents-inner {
+        padding: 5px 10px 10px 10px;
+        margin-top: 50px;
+        height: calc(100vh - 50px);
+        overflow-y: hidden;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    ul.flex-box li,
+    .change_profile ul li,
+    .change_password ul li {
+        display: block;
+    }
+    .change_password ul li:nth-child(2) {
+        margin-top: 30px;
+    }
+    .change_profile ul li .label,
+    .change_password ul li .label,
+    ul.flex-box li .label,
+    .dialo-input-text {
+        width: 100%;
+    }
+    .change_profile ul li .label,
+    .change_password ul li .label,
+    ul.flex-box li .label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .change_profile .icon {
+        margin: auto;
+    }
+    .dialog-contents > .close:hover {
+        background: none;
+    }
+    .cropper-dialog .dialog-contents-inner {
+        padding: 0;
+        margin-top: 50px;
+        height: calc(100vh - 50px);
+        min-width: initial;
+        background: #000;
+    }
+    .cropper-dialog .dialog-contents > .title,
+    .dialog .dialog-contents > .title {
+        font-size: 0;
+        top: 0;
+        left: 0;
+        height: 50px;
+        width: 100vw;
+        margin: 0;
+        background: none;
+        border-radius: 0;
+        border-bottom: solid .5px rgb(130, 130, 130);
+        box-sizing: border-box;
+    }
+    .cropper-dialog .close,
+    .dialog .close {
+        left: 0;
+        height: 50px;
+        width: 100px;
+        margin: 0;
+        background: none;
+        border-radius: 0;
+    }
+    .cropper-dialog .close::before,
+    .dialog .close::before {
+        display: none;
+    }
+    .cropper-dialog .close::after,
+    .dialog .close::after {
+        content: "キャンセル";
+        font-size: 16px;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100px;
+        height: 30px;
+        line-height: 30px;
+        transform: translateY(-50%);
+        color: rgb(0, 204, 153);
+    }
+    .create_account button,
+    .join_dengonban button,
+    .modify_member button,
+    .comment button,
+    .board_manage button,
+    .share_board button,
+    .modify_message button,
+    .create_message button,
+    .change_profile button,
+    .change_password button,
+    .cropper-dialog button {
+        font-size: 16px;
+        top: 5px;
+        position: fixed;
+        right: 5px;
+        border: none;
+        height: 40px;
+        width: auto;
+        padding: 0 30px;
+        border-radius: 25px;
+        /* z-index: 951px; */
+    }
+    .cropper-dialog .button-box {
+        margin: 0;
+    }
+    .cropper-dialog .icon-preview {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .cropper-container {
+        max-width: 100vw;
+        max-height: calc(100vh - 50px);
+        background-image: none;
+    }
+
+    .dialog .board_menu_member,
+    .dialog .create_account,
+    .dialog .comment,
+    .create_message .message-title, .modify_message .message-title,
+    .create_message .message-detail, .modify_message .message-detail,
+    .share_board .share-url {
+        width: 100%;
+    }
+    .dialog .join_dengonban,
+    .dialog .create_message .message-title,
+    .dialog .modify_message .message-title,
+    .dialog .comment,
+    .share_board .share-url {
+        padding-top: 10px;
+    }
+    .alert-dialog .dialog-contents {
+        max-width: 80vw;
+    }
+    .dialog .create_board {
+        padding-bottom: 20px;
+    }
+
+    .dialog .sw-400,
+    .dialog .sw-420 {
+        width: 100%;
+    }
+
+    /* アカウント作成ダイアログ */
+    .dialog .create_account > ul > li:nth-child(1) {
+        margin-top: 30px;
+    }
+
+    /* ホバー時のスタイル解除 */
+    .message-footer li:hover .comment-like svg {
+        fill: rgb(130, 130, 130);
+        transform: translateY(0);
+    }
+    .message-footer li:hover .comment-like span.counter {
+        color: initial;
+    }
+    /* タッチするとhoverが残ってしまうので 押されている時だけ */
+    .cmn-spread-icon:hover::before {
+        transform: scale(0);
+    }
+    .cmn-spread-icon.active::before,
+    .cmn-spread-icon:active::before {
+        transform: scale(1);
+    }
+
+    /* 伝言板メニューのヘッダーボタン */
+    .board-menu-buttons {
+        padding: 15px 5px 10px 5px;
+        line-height: 40px;
+        margin: 0;
+    }
+
+    /* 検索 */
+    .search-keyword input {
+        padding-left: 10px;
+    }
+
+    /* パスワードリセット　*/
+    .password-form ul li .password {
+        width: auto;
+    }
+
+    .board-top .error-message {
+        margin: 10px 5px;
+    }
+
+    /* 伝言板参加ページ */
+    .join-board-page {
+        background: none;
+    }
+    .join-board-page .board-title {
+        white-space: initial;
+        text-overflow: initial;
+    }
+    .page-input-text {
+        width: 100% !important;
+    }
+}

@@ -1,0 +1,104 @@
+﻿/* トップページ */
+.massage-board-list {
+    background-color: rgba(0, 204, 153, .05);
+    padding: 5px 10px;
+    margin: 10px 0;
+    position: relative;
+    display: none;
+}
+.board-list-icon::before {
+    background-image: url(../img/board.svg);
+}
+.infomation-icon::before {
+    background-image: url(../img/info-icon.svg);
+}
+.massage-board-list > ul.board {
+    box-sizing: border-box;
+}
+.massage-board-list > ul.board > li {
+    padding: 10px;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    box-sizing: border-box;
+    margin: 15px 0;
+    background: #fff;
+    transition: .5s;
+    cursor: pointer;
+}
+.massage-board-list > ul.board > li:nth-child(1) {
+    margin-top: 0;
+}
+.massage-board-list > ul.board > li:hover {
+    box-shadow: 0px 0px 5px rgba(0,0,0,.3);
+    transform: scaleY(1.05) scaleX(1.01);
+    /* background: rgba(0, 204, 153,.05); */
+}
+.massage-board-list > ul.board > li:active {
+    transition: .2s;
+    transform: scaleY(1);
+    box-shadow: 0px 0px 3px rgba(0,0,0,.2);
+}
+.board-title,
+.last-update-message-title-line {
+    cursor: pointer;
+}
+.board-title {
+    font-size: 20px;
+    font-weight: bold;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.last-message-line {
+    display: table;
+    width: 100%;
+}
+.updateTime{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    color: grey;
+    text-indent: 0.5em;
+    width: 5em;
+}
+.last-update-message-title-line {
+    display: table-cell;
+    text-indent: 1em;
+    font-size: 16px;
+    max-width: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* お知らせ */
+.massage-board-list > ul.infomation {
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+}
+.massage-board-list > ul.infomation li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: dotted 1px rgb(220, 220, 220);
+}
+.massage-board-list > ul.infomation li:nth-child(1) {
+    border: none;
+}
+.massage-board-list > ul.infomation li span {
+    font-size: 12px;
+    width: 130px;
+}
+.massage-board-list > ul.infomation li div {
+    width: calc(100% - 130px);
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    padding-left: 5px;
+    cursor: pointer;
+    color: blue;
+}
+.massage-board-list > ul.infomation li div:hover {
+    text-decoration: blue underline;
+}
