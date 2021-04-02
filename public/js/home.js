@@ -1,6 +1,7 @@
 ﻿/* home.js */
 $(function () {
 
+    // 最初の変更
     if ($('[name="invite_id"]').val()) {
         getRequest('share/' + $('[name="invite_id"]').val());
         return;
