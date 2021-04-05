@@ -40,7 +40,7 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'mail.exists' => 'メールアドレスまたはパスワードが正しくありません',
+            'mail.exists' => 'メールアドレスまたはパスワードが正しくありません。',
         ];
     }
 }

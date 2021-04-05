@@ -48,13 +48,15 @@ function setUpCreateBoard() {
 
         console.log("新規伝言版作成：", data);
         
-        // 先に画面を閉じてローディングを開始する
-        $('.dialog').fadeOut(200);
-        startLoading();
+        // ローディングを開始する
+        startDialogLoading();
         getResponse('board', data, false, 'POST').done(function (response) {
+            $('.dialog').fadeOut(200);
+            stopDialogLoading();
+            startLoading();
             refreshTop();
-        }).fail(function() {
-            stopLoading();
+        }).fail(function(response) {
+            stopDialogLoading();
         });
     });
 

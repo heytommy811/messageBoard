@@ -14,6 +14,14 @@ function startLoading(dom) {
 }
 
 /**
+ * ダイアログ用のローディング開始
+ */
+function startDialogLoading() {
+    const loader = $('<ul>', { class: 'content-loading' }).append($('<li>')).append($('<li>'));
+    $('.dialog .dialog-contents').append($('<div>', { class: 'dialog-loading-wrapper' }).append($('<div>', { class: 'loading-wrapper' }).append(loader)))
+}
+
+/**
  * ローディング終了
  */
 function stopLoading(dom) {
@@ -22,6 +30,13 @@ function stopLoading(dom) {
     } else {
         dom.find('.loading-wrapper').remove();
     }
+}
+
+/**
+ * ダイアログ用のローディング終了
+ */
+function stopDialogLoading() {
+    $('.dialog-loading-wrapper').remove();
 }
 
 /**
@@ -127,6 +142,20 @@ function getResponse(url, data, onlyReturn, method) {
             }
         })
         .fail(function (result) {
+            let message = '';
+            if (result.status == 422) {
+                // バリデーションエラーの場合
+                let validationMessages = [];
+                console.error('validation error', result.responseJSON.errors)
+                for (const paramName in result.responseJSON.errors) {
+                    validationMessages = validationMessages.concat(result.responseJSON.errors[paramName]);
+                }
+                message = validationMessages.join('<br>');
+                showAlert(message, function () {
+                    d.reject({ validationError: true });
+                });
+                return;
+            }
             console.error(result);
             showAlert('予期せぬエラーが発生しました。', function () {
                 d.reject(result);

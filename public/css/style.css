@@ -92,6 +92,15 @@ textarea:focus {
     background-color: #00cc99 !important;
 } */
 
+.dialog-loading-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.2);
+    z-index: 951;
+}
 .loading-wrapper {
     position: absolute;
     top: 10px;
@@ -100,6 +109,10 @@ textarea:focus {
     height: 50px;
     transform: translateX(-50%);
     pointer-events: none;
+}
+.dialog-loading-wrapper > .loading-wrapper {
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 .logo .loading-wrapper {
     width: 40px;

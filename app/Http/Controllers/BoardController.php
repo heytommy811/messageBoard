@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Requests\CreateBoardRequest;
+
 use App\models\St_dgb;
 use App\models\St_dgn;
 use App\models\St_dgk;
@@ -96,7 +98,7 @@ class BoardController extends Controller
     /**
      * 伝言板を新規作成します
      */
-    public function store(Request $request)
+    public function store(CreateBoardRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
