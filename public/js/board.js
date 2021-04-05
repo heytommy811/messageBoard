@@ -385,10 +385,11 @@ function setUpBoard() {
 
             console.log("管理メニュー変更：", data);
 
-            $('.dialog').fadeOut(500);
-            startLoading();
-            getResponse('manage', data, false, 'PUT').always(function () {
-                stopLoading();
+            startDialogLoading();
+            getResponse('manage', data, false, 'PUT').done(function () {
+                $('.dialog').fadeOut(500);
+            }).always(function () {
+                stopDialogLoading();
             });
 
         });

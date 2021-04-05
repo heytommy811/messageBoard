@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\UpdateManageRequest;
+
 use App\models\St_dgb;
 use App\models\St_dgm;
 use App\models\St_dgk;
@@ -35,7 +37,7 @@ class BoardManageController extends Controller
     /**
      * 伝言板管理を更新する
      */
-    public function update(Request $request)
+    public function update(UpdateManageRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);

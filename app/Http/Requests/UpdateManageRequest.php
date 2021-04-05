@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBoardRequest extends FormRequest
+class UpdateManageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,10 @@ class CreateBoardRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'manage_user_name' => 'required',
             'join_type' => 'required|in:1,2,3,9',
             'join_password' => 'required_if:join_type,3,9', // 参加種別が3:パスワードのみ、または9:パスワードと作成社による承認の場合は必須
             'search_type' => 'required|boolean',
             'default_auth_id' => 'required|in:1,2,3,4',
-        ];
-    }
-
-    public function attributes()
-    {
-        return [
-            'title' => '伝言板タイトル',
-            'manage_user_name' => '作成者名',
         ];
     }
 

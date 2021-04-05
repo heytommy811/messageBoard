@@ -141,6 +141,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'join_type' => '参加方式',
+        'join_password' => 'パスワード',
+        'search_type' => '検索可否',
+        'default_auth_id' => '参加者の権限',
+    ],
 
 ];
