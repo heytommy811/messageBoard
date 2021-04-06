@@ -44,7 +44,7 @@ $(function() {
         console.log("パスワードリセット：", data);
 
         startBlockLoading();
-        getResponse('password/reset', data, false, 'POST').done(function (response) {
+        getResponse('account/password/reset', data, false, 'POST').done(function (response) {
             showAlert('パスワードをリセットしました。');
             $('.password-form').hide();
             $('.login-box').show();

@@ -54,8 +54,8 @@ function setUpCreateAccount() {
         showConfirm('入力の内容でアカウントを作成します。</br>よろしいですか？', function() {
             let form = new FormData();
             form.append('account_name', $('.dialog .account_name').val());
-            form.append('account_mail', $('.dialog .account_mail').val());
-            form.append('account_password', $('.dialog .account_password').val());
+            form.append('mail', $('.dialog .account_mail').val());
+            form.append('password', $('.dialog .account_password').val());
     
             // アイコンサイズ編集用のパラメータ
             if (icon.file) {
@@ -74,7 +74,7 @@ function setUpCreateAccount() {
                 data: form,
                 processData: false,
                 contentType: false,
-            }, false, 'POST').done(function (response) {
+            }, null, false, 'POST').done(function (response) {
                 stopBlockLoading();
                 $('.dialog').fadeOut(200);
                 showAlert('確認メールに記載されたURLを開いて登録を完了してください。', function () {

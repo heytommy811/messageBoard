@@ -39,7 +39,7 @@ return [
     'dimensions'           => 'The :attribute has invalid image dimensions.',
     'distinct'             => 'The :attribute field has a duplicate value.',
     'email'                => ':attributeは正しい形式で入力してください。',
-    'exists'               => 'The selected :attribute is invalid.',
+    'exists'               => ':attribute is invalid.',
     'file'                 => 'The :attribute must be a file.',
     'filled'               => 'The :attribute field must have a value.',
     'gt'                   => [
@@ -85,7 +85,7 @@ return [
     'min'                  => [
         'numeric' => 'The :attribute must be at least :min.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
+        'string'  => ':attributeは:min文字以上で入力してください。',
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
@@ -109,7 +109,7 @@ return [
     ],
     'string'               => 'The :attribute must be a string.',
     'timezone'             => 'The :attribute must be a valid zone.',
-    'unique'               => 'The :attribute has already been taken.',
+    'unique'               => '既に登録されている:attributeです。',
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
 
@@ -142,6 +142,8 @@ return [
     */
 
     'attributes' => [
+        'mail' => 'メールアドレス',
+        'password' => 'パスワード',
         'join_type' => '参加方式',
         'join_password' => 'パスワード',
         'search_type' => '検索可否',

@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\CreateAccountRequest;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\models\St_act;
@@ -30,23 +33,15 @@ class AccountController extends Controller
     /**
      * メールを送信してアカウントの作成処理を行う（仮登録）
      */
-    public function store(Request $request)
+    public function store(CreateAccountRequest $request)
     {
         
         $name = $request->input('account_name');
-        $mail = $request->input('account_mail');
-        $password = $request->input('account_password');
+        $mail = $request->input('mail');
+        $password = $request->input('password');
 
         // メールアドレスを検証する
-        St_act::validateMail($mail);
         St_acm::validateMail($mail);
-
-        if (strlen($name) < 1) {
-            throw new MessageException('アカウント名が未入力です。');
-        }
-        if (strlen($password) < 2) {
-            throw new MessageException('パスワードが短すぎます。');
-        } 
 
         // アイコン画像の保存
         $file_name = IconUtil::saveCroppingIcon($request);
@@ -170,16 +165,20 @@ class AccountController extends Controller
      */
     public function sendPasswordResetMail(Request $request)
     {
-        
+        // メールアドレスのみバリデーション
+        $request->validate([
+            'mail' => 'required|email'
+        ]);
+
         $mail = $request->input('mail');
-        
         // ユーザー情報を検索する
         $user_info = St_act::getByMail($mail);
-        
         // 登録されたメールアドレス以外の場合はエラー
-        if ($user_info == null) {
+        if (empty($user_info)) {
             Log::debug('no user: '. $mail);
-            throw new MessageException('登録されていないメールアドレスです。');
+            // throw new MessageException('登録されていないメールアドレスです。');
+            // メールアドレスの存在チェックが出来てしまうのはセキュリティ上よろしくないので、正常終了とする
+            return response()->json(['status' => 'success']);
         }
         
         // 認証IDを発行
@@ -241,7 +240,7 @@ class AccountController extends Controller
     /**
      * パスワードをリセットする
      */
-    public function resetPasssword(Request $request)
+    public function resetPasssword(ResetPasswordRequest $request)
     {
         St_act::resetPassword($request);
         return response()->json(['status' => 'success']);

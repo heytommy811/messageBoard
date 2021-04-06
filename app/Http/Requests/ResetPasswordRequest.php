@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class ResetPasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,17 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'mail' => 'required|email|exists:St_act,mail',
+            'cert_id' => 'required|exists:St_apr,cert_id',
             'password' => 'required',
         ];
     }
 
+    
     public function messages()
     {
         return [
-            'mail.exists' => 'メールアドレスまたはパスワードが正しくありません。',
+            'cert_id.required' => '不正な入力値が指定されました。',
+            'cert_id.exists' => '不正な入力値が指定されました。',
         ];
     }
 }

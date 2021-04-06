@@ -188,7 +188,7 @@ ul.content-loading li:nth-child(2)::before {
     width: 100vw;
     height: 100vh;
     background: rgba(0,0,0,.1);
-    z-index: 999;
+    z-index: 953;
 }
 .block-loading-content > .loading-wrapper {
     top: 50%;

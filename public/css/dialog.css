@@ -11,7 +11,11 @@
     top: 0;
     left: 0;
     display: none;
-    z-index: 951;
+    z-index: 954;
+}
+.dialog,
+.cropper-dialog {
+    z-index: 952;
 }
 .dialog.transparent {
     background: transparent;

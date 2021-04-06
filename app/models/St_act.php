@@ -29,7 +29,10 @@ class St_act extends Model
      * メールアドレスからユーザーを検索する
      */
     public function scopeGetByMail($query, $mail) {
-        return $query->where('mail', $mail)->first();
+        if ($query->where('mail', $mail)->exists()) {
+            return $query->where('mail', $mail)->first();
+        }
+        return '';  // nullを返却できないので空文字を返す
     }
 
     /**
@@ -110,10 +113,10 @@ class St_act extends Model
         $cert_id = $request->input('cert_id');
         $password = $request->input('password');
 
-        if (empty($password)) {
-            Log::debug('password empty.');
-            throw new MessageException('パスワードが未入力です。');
-        }
+        // if (empty($password)) {
+        //     Log::debug('password empty.');
+        //     throw new MessageException('パスワードが未入力です。');
+        // }
         try {
             // トランザクションの開始
             DB::beginTransaction();
