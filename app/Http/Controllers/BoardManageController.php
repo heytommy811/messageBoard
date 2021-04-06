@@ -19,6 +19,9 @@ class BoardManageController extends Controller
      */
     public function index(Request $request)
     {
+        $request->validate([
+            'dgb_id' => 'required|integer'
+        ]);
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
         $dgb_id = $request->input('dgb_id');

@@ -406,7 +406,7 @@ function setUpBoard() {
         let template = $('.template.manage').clone();
         showCommonDialog('管理メニュー', template.children());
         $('.dialog .board_manage .password').parents('li').hide(0);
-        startLoading($('.dialog .dialog-contents-inner'));
+        startDialogLoading();
         
         $('.dialog .board_manage .join_approval').prop('checked', false);
         $('.dialog .board_manage .join_password').prop('checked', false);
@@ -445,12 +445,12 @@ function setUpBoard() {
             }
 
             setTimeout(function () {
-                stopLoading($('.dialog .dialog-contents-inner'));
+                stopDialogLoading();
                 $('.dialog .board_manage').css('visibility', 'visible');
             }, 300);
         }).fail(function () {
             closeCommonDialog();
-            stopLoading($('.dialog .dialog-contents-inner'));
+            stopDialogLoading();
         });
     }
 
