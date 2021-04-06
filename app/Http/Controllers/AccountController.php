@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
+use App\Http\Requests\UpdateProfileRequest;
+
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -124,7 +127,7 @@ class AccountController extends Controller
     /**
      * アカウント情報を更新する
      */
-    public function updateProfile(Request $request)
+    public function updateProfile(UpdateProfileRequest $request)
     {
         
         // ログイン状態（セッションが有効の場合）
@@ -138,10 +141,10 @@ class AccountController extends Controller
             $response['src'] = IconUtil::getBase64png(IconUtil::getIconFilePath($user[Constants::KEY_ID] . '.png'));
         }
         // アカウントテーブルを更新する
-        $setting_account_name = $request->input('setting_account_name');
-        St_act::updateAccountNameById($user[Constants::KEY_ID], $setting_account_name);
+        $account_name = $request->input('account_name');
+        St_act::updateAccountNameById($user[Constants::KEY_ID], $account_name);
         // セッションのユーザー情報を更新する
-        $user[Constants::KEY_ACCOUNT_NAME] = $setting_account_name;
+        $user[Constants::KEY_ACCOUNT_NAME] = $account_name;
         $request->session()->put('users', $user);
             
         return response()->json(['status' => 'success']);

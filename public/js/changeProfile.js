@@ -44,7 +44,7 @@ function setUpChangeProfile() {
         }
 
         let form = new FormData();
-        form.append('setting_account_name', accountName);
+        form.append('account_name', accountName);
 
         // アイコンサイズ編集用のパラメータ
         if (icon.file) {
@@ -56,8 +56,7 @@ function setUpChangeProfile() {
             form.append('_method', 'PUT');
         }
 
-        startLoading();
-        $('.dialog').fadeOut(200);
+        startDialogLoading();
         getResponse({
             url: 'account/profile',
             type: 'POST',
@@ -66,13 +65,14 @@ function setUpChangeProfile() {
             processData: false,
             contentType: false,
         }, null, false, 'PUT').done(function (response) {
+            $('.dialog').fadeOut(200);
             // アイコン画像を差し替える
             $('header .header-icon').attr('src', response.src);
             $('.template.change_profile .icon > img').attr('src', response.src);
             $('header .account-name').text(accountName);
             $('.template.change_profile .account_name').val(accountName);
         }).always(function () {
-            stopLoading();
+            stopDialogLoading();
         });
         return false;
     });

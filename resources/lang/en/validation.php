@@ -54,7 +54,7 @@ return [
         'string'  => 'The :attribute must be greater than or equal :value characters.',
         'array'   => 'The :attribute must have :value items or more.',
     ],
-    'image'                => 'The :attribute must be an image.',
+    'image'                => ':attributeは画像ファイルを選択してください。',
     'in'                   => ':attributeの入力値が不正です。',
     'in_array'             => 'The :attribute field does not exist in :other.',
     'integer'              => 'The :attribute must be an integer.',
@@ -77,10 +77,10 @@ return [
     'max'                  => [
         'numeric' => 'The :attribute may not be greater than :max.',
         'file'    => 'The :attribute may not be greater than :max kilobytes.',
-        'string'  => 'The :attribute may not be greater than :max characters.',
+        'string'  => ':attributeは:max文字で入力してください。',
         'array'   => 'The :attribute may not have more than :max items.',
     ],
-    'mimes'                => 'The :attribute must be a file of type: :values.',
+    'mimes'                => ':attributeは:valuesの形式でなければなりません。',
     'mimetypes'            => 'The :attribute must be a file of type: :values.',
     'min'                  => [
         'numeric' => 'The :attribute must be at least :min.',
@@ -146,6 +146,8 @@ return [
         'join_password' => 'パスワード',
         'search_type' => '検索可否',
         'default_auth_id' => '参加者の権限',
+        'account_name' => 'アカウント名',
+        'file' => 'アイコン'
     ],
 
 ];
