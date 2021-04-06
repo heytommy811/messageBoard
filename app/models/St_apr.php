@@ -21,7 +21,7 @@ class St_apr extends Model
     /**
      * パスワードリセットテーブルに登録する
      */
-    public function scopeAddPasswordReset($usre_id, $cert_id) {
+    public function scopeAddPasswordReset($query, $usre_id, $cert_id) {
         $query->create([
             'user_id' => $usre_id,
             'cert_id' => $cert_id,
