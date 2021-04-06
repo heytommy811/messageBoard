@@ -113,10 +113,6 @@ class St_act extends Model
         $cert_id = $request->input('cert_id');
         $password = $request->input('password');
 
-        // if (empty($password)) {
-        //     Log::debug('password empty.');
-        //     throw new MessageException('パスワードが未入力です。');
-        // }
         try {
             // トランザクションの開始
             DB::beginTransaction();
