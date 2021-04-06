@@ -25,8 +25,6 @@ class BoardController extends Controller
      */
     public function all(Request $request)
     {
-        $response = [];
-
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
 
@@ -36,10 +34,10 @@ class BoardController extends Controller
         // お知らせ２：作成した伝言に対するコメントといいね
         $stkInfomations = St_stk::getReplyInfomations($user[Constants::KEY_ID]);
 
-        $response['board_list'] = St_dgb::getBoards($user[Constants::KEY_ID]);
-        $response['infomation_list'] = array_merge($joinRequestInfomations, $stkInfomations);
-            
-        return view('page/home', $response);
+        return view('page/home', [
+            'board_list' => St_dgb::getBoards($user[Constants::KEY_ID]),
+            'infomation_list' => array_merge($joinRequestInfomations, $stkInfomations)
+        ]);
     }
 
     /**
@@ -47,7 +45,9 @@ class BoardController extends Controller
      */
     public function index(Request $request)
     {
-        $response = [];
+        $request->validate([
+            'dgb_id' => 'required|integer'
+        ]);
 
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -79,6 +79,9 @@ class BoardController extends Controller
      */
     public function join(Request $request, $dgb_id)
     {
+        $request->validate([
+            'dgb_id' => 'required|integer'
+        ]);
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
 

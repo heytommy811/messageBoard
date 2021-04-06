@@ -128,6 +128,10 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'dgb_id' => [
+            'required' => 'パラメータが不正です。',
+            'integer' => 'パラメータが不正です。',
+        ],
     ],
 
     /*

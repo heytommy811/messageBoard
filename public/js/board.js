@@ -47,6 +47,8 @@ function showBoard(dgb_id, skipHistory) {
         }
     }).always(function () {
         stopLoading($('.board-top'));
+    }).fail(function () {
+        history.back();
     });
 }
 
