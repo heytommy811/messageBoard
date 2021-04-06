@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
@@ -153,7 +154,7 @@ class AccountController extends Controller
     /**
      * パスワードを変更する
      */
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
         // ログイン状態（セッションが有効の場合）
         $user = $this->getUserSession($request);

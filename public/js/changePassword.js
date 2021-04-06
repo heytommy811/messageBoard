@@ -31,7 +31,7 @@ function setUpChangePassword() {
             return;
         }
 
-        startLoading();
+        startDialogLoading();
         getResponse('account/password', {
             password_before: inputArray[0].val(),
             password_after: inputArray[1].val(),
@@ -46,7 +46,7 @@ function setUpChangePassword() {
                 $('.dialog').fadeOut(200);
             }
         }).always(function () {
-            stopLoading();
+            stopDialogLoading();
         });
         return false;
     });

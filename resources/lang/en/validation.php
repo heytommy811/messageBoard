@@ -147,7 +147,9 @@ return [
         'search_type' => '検索可否',
         'default_auth_id' => '参加者の権限',
         'account_name' => 'アカウント名',
-        'file' => 'アイコン'
+        'file' => 'アイコン',
+        'password_before' => '変更前パスワード',
+        'password_after' => '変更後パスワード',
     ],
 
 ];
