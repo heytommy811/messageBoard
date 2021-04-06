@@ -24,7 +24,7 @@ class UpdateProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'account_name' => 'required|string|max:10',
+            'account_name' => 'required|string|max:100',
             'file' => 'image|mimes:png,jpg,jpeg',
             'width' => 'required_with:file|numeric',
             'height' => 'required_with:file|numeric',
