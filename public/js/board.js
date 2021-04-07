@@ -195,7 +195,7 @@ function setUpBoard() {
         $('.dialog .board_menu_member .member-list ul').empty();
         $('.dialog .board_menu_member .member-request ul').empty();
 
-        startLoading($('.dialog .dialog-contents-inner'));
+        startDialogLoading();
         getResponse('member', { dgb_id: dgb_id }, false, 'GET').then(function (response) {
             console.log("参加者情報取得：", response);
 
@@ -237,9 +237,9 @@ function setUpBoard() {
             }
 
         }).always(function () {
-            stopLoading($('.dialog .dialog-contents-inner'));
+            stopDialogLoading();
         }).fail(function () {
-            $('.dialog .close').click();
+            closeCommonDialog();
         });
     }
 
@@ -471,14 +471,14 @@ function setUpBoard() {
 
             console.log("参加者名登録処理：", data);
 
-            $('.board-top').empty();
             startLoading($('.board-top'));
-
+            
             getResponse('member', data, false, 'POST').then(function (response) {
                 // 伝言板ページを表示する
+                $('.board-top').empty();
                 showBoard(data.dgb_id, false);
             }).fail(function () {
-                stopLoading();
+                stopLoading($('.board-top'));
             });
 
         });

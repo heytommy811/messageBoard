@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+
+use App\Http\Requests\CommonBoardRequest;
+use App\Http\Requests\UpdateMemberAuthRequest;
+use App\Http\Requests\AnswerMemberRequest;
+use App\Http\Requests\UpdateMemberNameRequest;
+
 use App\models\St_dgb;
 use App\models\St_dgm;
 use App\models\St_dgk;
@@ -18,7 +24,7 @@ class MemberController extends Controller
     /**
      * 伝言IDで指定した伝言のメンバー一覧を表示します
      */
-    public function index(Request $request)
+    public function index(CommonBoardRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -60,7 +66,7 @@ class MemberController extends Controller
     /**
      * メンバーの権限を更新する非同期処理
      */
-    public function update(Request $request)
+    public function update(UpdateMemberAuthRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -71,7 +77,7 @@ class MemberController extends Controller
     /**
      * 参加申請処理
      */
-    public function request(Request $request)
+    public function request(CommonBoardRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -123,7 +129,7 @@ class MemberController extends Controller
     /**
      * 参加申請結果を回答する
      */
-    public function answer(Request $request)
+    public function answer(AnswerMemberRequest $request)
     {
 
         // ユーザーのセッション情報を取得
@@ -135,7 +141,7 @@ class MemberController extends Controller
     /**
      * 伝言板参加時にメンバー名を登録します。
      */
-    public function store(Request $request)
+    public function store(UpdateMemberNameRequest $request)
     {
 
         // ユーザーのセッション情報を取得

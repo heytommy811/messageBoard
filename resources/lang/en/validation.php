@@ -140,6 +140,19 @@ return [
             'required' => 'パラメータが不正です。',
             'integer' => 'パラメータが不正です。',
         ],
+        'user_id' => [
+            'required' => 'パラメータが不正です。',
+            'integer' => 'パラメータが不正です。',
+        ],
+        'join_request_id' => [
+            'required' => 'パラメータが不正です。',
+            'integer' => 'パラメータが不正です。',
+        ],
+        'accept' => [
+            'required' => 'パラメータが不正です。',
+            'integer' => 'パラメータが不正です。',
+            'in' => 'パラメータが不正です。',
+        ],
     ],
 
     /*
@@ -165,7 +178,8 @@ return [
         'password_before' => '変更前パスワード',
         'password_after' => '変更後パスワード',
         'comment' => 'コメント',
-        'message' => '伝言内容'
+        'message' => '伝言内容',
+        'name' => '名前'
     ],
 
 ];
