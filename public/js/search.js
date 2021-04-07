@@ -1,3 +1,4 @@
+var searchKeyword = '';
 /**
  * 検索画面を表示する
  */
@@ -5,7 +6,7 @@ function showSearch(keyword, skipHistory) {
 
     // 履歴を追加
     if (!skipHistory) {
-        addHistory('?page=search&keyword=');
+        addHistory('?page=search&keyword=' + keyword);
     }
 
     const left = $('.content.search').css('left').replace('px', '');
@@ -14,10 +15,13 @@ function showSearch(keyword, skipHistory) {
         $('.content.search').animate({ left: 0 }, 200);
         $('header .menu li').removeClass('active');
         $('header .menu li.search').addClass('active');
-        if (keyword) {
-            $('.search-keyword input').val(keyword);
-            search(true);
-        }
+        $('.search-keyword input').val(keyword);
+        searchKeyword = keyword;
+        search({
+            keyword: keyword,
+            skipHistory: true,
+            currentPageIndex: 0
+        });
         // 検索キーワードにフォーカスインする
         setTimeout(function () {
             $('.search-keyword input').focus();
@@ -39,13 +43,33 @@ function setUpSearch() {
 
     // 検索ボタン押下時のイベント
     $('span.search-icon').click(function () {
-        search(false);
+        search({
+            keyword: $('.search-keyword input').val(),
+            skipHistory: false,
+            currentPageIndex: 0
+        });
     });
     // エンターキーを押下したときのイベント
     $('.search-keyword input').keypress(function (e) {
         if (e.keyCode === 13) {
-            search(false);
+            $('span.search-icon').click();
         }
+    });
+    // ページャーのボタン押下時
+    $(document).on('click', '.page-btn', function () {
+        if ($(this).hasClass('current') || $(this).hasClass('disable')) return;
+        let page = $(this).data('page');
+        let currentPage = $('.page-btn.current').data('page');
+        if (page === 'next') {
+            page = currentPage + 1;
+        } else if (page === 'prev') {
+            page = currentPage - 1;
+        }
+        search({
+            keyword: searchKeyword,
+            skipHistory: false,
+            currentPageIndex: page
+        });
     });
 
     // 参加ボタンイベント
@@ -131,26 +155,23 @@ function setUpSearch() {
 /**
  * 検索処理
  */
-function search(skipHistory) {
+function search(param) {
 
-    const keyword = $('.search-keyword input').val();
-    console.log("検索キーワード：", keyword);
-
-    if (!keyword) {
-        return;
-    }
+    console.log("検索キーワード：", param.keyword);
 
     // 履歴を追加
-    if (!skipHistory) {
-        replaceHistory('?page=search&keyword=' + keyword);
+    if (!param.skipHistory) {
+        replaceHistory('?page=search&keyword=' + param.keyword);
     }
 
     let data = {
-        keyword: keyword,
+        keyword: param.keyword,
+        p: param.currentPageIndex
     };
     startLoading();
     getResponse('search/board', data, false, 'GET').done(function (result) {
         // 検索結果を表示する
+        refreshPage(result.total_page, param.currentPageIndex);
         refreshSearchResults(result.board_list);
     }).always(function () {
         stopLoading();
@@ -162,7 +183,7 @@ function search(skipHistory) {
  * @param {Array} board_list 
  */
 function refreshSearchResults(board_list) {
-    $('.search-result-list ul').empty();
+    $('.search-result-board').empty();
     let delay = 0;
     $.each(board_list, function (i, board) {
         let template1 = $('.content.search .template .label').clone();
@@ -191,9 +212,41 @@ function refreshSearchResults(board_list) {
         li.append($('<input>', { type: 'hidden', name: 'join_type', value: board.join_type }));
         li.append(template1).append(template2);
         setTimeout(function () {
-            $('.search-result-list ul').append(li);
+            $('.search-result-board').append(li);
         }, delay);
         delay += 100;
     });
+    setTimeout(function () {
+        $('.search-result-page.foot').fadeIn(500);
+    }, delay)
+}
+
+/**
+ * ページャーを更新する
+ * @param {Number} totalPage トータルページ件数
+ * @param {Number} currentPageIndex 現在のページ
+ */
+function refreshPage(totalPage, currentPageIndex) {
+    $('.search-result-page > ul').empty();
+    if (totalPage <= 1) {
+        $('.search-result-page-wrapper').hide();
+        return;
+    } else {
+        $('.search-result-page-wrapper').show();
+    }
+
+    for (let i = 0; i < totalPage; i++) {
+        $('.search-result-page > ul').append('<li data-page="' + i + '" class="page-btn ' + (i === currentPageIndex ? 'current' : '') + '">' + (i + 1) + '</li>');
+    }
+    $('.search-result-page-prev').removeClass('disable');
+    $('.search-result-page-next').removeClass('disable');
+    if (currentPageIndex === 0) {
+        // 前へを非活性に
+        $('.search-result-page-prev').addClass('disable');
+    } else if (currentPageIndex === totalPage - 1) {
+        // 次へを非活性に
+        $('.search-result-page-next').addClass('disable');
+    }
+    $('.search-result-page.foot').hide();
 }
 

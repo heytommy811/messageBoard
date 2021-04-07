@@ -80,8 +80,8 @@ class St_dgb extends Model
     /**
      * キーワードで伝言板を検索する
      */
-    public function scopeSelectBoard($query, $keyword, $user_id) {
-        $boardSearchResults = $query->join('st_dgk', function ($join) {
+    public function scopeSelectBoard($query, $keyword, $user_id, $page = 0) {
+        $tempQuery = $query->join('st_dgk', function ($join) {
             $join->on('st_dgk.dgb_id', '=', 'st_dgb.dgb_id')
             ->where('search_type', 1);  // 検索可能な伝言板のみが対象
         })->join('st_dgm', function ($join) {
@@ -90,7 +90,11 @@ class St_dgb extends Model
         })->where(function($query) use ($keyword) {
             $query->orWhere('st_dgb.title', 'LIKE', '%' . $keyword . '%')
             ->orWhere('st_dgb.dgb_id', $keyword); // 伝言板IDの完全一致でも検索可能
-        })->get();
+        });
+        $maxRow = 10;
+        $totalPage = ceil($tempQuery->count() / $maxRow);
+        $tempQuery = $tempQuery->skip($page * $maxRow)->take($maxRow);
+        $boardSearchResults = $tempQuery->get();
 
         foreach($boardSearchResults as $boardSearchResult) {
             $dgb_id = $boardSearchResult['dgb_id'];
@@ -107,7 +111,10 @@ class St_dgb extends Model
             $boardSearchResult['button_type'] = $button_type;
         }
 
-        return $boardSearchResults;
+        return [
+            'total_page' => $totalPage,
+            'board_list' => $boardSearchResults
+        ];
     }
 
     /**
