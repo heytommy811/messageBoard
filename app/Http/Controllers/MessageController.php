@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Requests\CommonMessageRequest;
+use App\Http\Requests\CreateMessageRequest;
+use App\Http\Requests\UpdateMessageRequest;
+
 use App\models\St_dgb;
 use App\models\St_dgn;
 use App\models\St_dgm;
@@ -23,7 +27,7 @@ class MessageController extends Controller
     /**
      * 伝言IDで指定した伝言の詳細を表示します
      */
-    public function index(Request $request)
+    public function index(CommonMessageRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -62,7 +66,7 @@ class MessageController extends Controller
     /**
      * 伝言登録処理
      */
-    public function store(Request $request)
+    public function store(CreateMessageRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -95,7 +99,7 @@ class MessageController extends Controller
     /**
      * 伝言削除処理
      */
-    public function destroy(Request $request)
+    public function destroy(CommonMessageRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
@@ -106,7 +110,7 @@ class MessageController extends Controller
     /**
      * 伝言更新処理
      */
-    public function update(Request $request)
+    public function update(UpdateMessageRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);

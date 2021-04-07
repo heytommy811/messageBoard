@@ -164,7 +164,8 @@ return [
         'file' => 'アイコン',
         'password_before' => '変更前パスワード',
         'password_after' => '変更後パスワード',
-        'comment' => 'コメント'
+        'comment' => 'コメント',
+        'message' => '伝言内容'
     ],
 
 ];

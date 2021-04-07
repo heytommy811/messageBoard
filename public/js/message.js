@@ -105,31 +105,14 @@ function setUpMessage() {
 
         console.log("伝言内容編集：", data);
 
-        $('.dialog').fadeOut(500);
-        startLoading();
-
-        getResponse('message', data, true, 'PUT').then(function (response) {
+        startDialogLoading();
+        getResponse('message', data, false, 'PUT').then(function (response) {
             console.log(response);
-            
-            if (response.status) {
-                if (response.status == 'timeout') {
-                    // ログインへリダイレクトする
-                    showAlert(response.message, function() {
-                        redirectAppRoot()
-                    });
-                } else if (response.status == 'error' && response.message) {
-                    // エラーメッセージを表示する
-                    showAlert(response.message, function() {
-                        showHome();
-                    });
-                }
-                
-            } else {
-                $('.board-top').empty();
-                $('.board-top').append(response);
-            }
+            $('.board-top').empty();
+            $('.board-top').append(response);
+            closeCommonDialog();
         }).always(function () {
-            stopLoading();
+            stopDialogLoading();
         });
     });
 
@@ -269,13 +252,14 @@ function setUpMessage() {
      */
     function deleteMessage(dgn_id) {
 
-        $('.board-top').empty();
         startLoading($('.board-top'));
-
         const data = { dgn_id: dgn_id };
         getResponse('message', data, false, 'DELETE').then(function (response) {
             // 伝言板のページを表示する
+            $('.board-top').empty();
             showBoard($('.board-top').data('dgb_id'), false);
+        }).fail(function () {
+            stopLoading($('.board-top'));
         });
 
     }

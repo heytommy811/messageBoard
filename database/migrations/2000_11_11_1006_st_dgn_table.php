@@ -19,7 +19,6 @@ class StDgnTable extends Migration
             $table->string('title', 100)->comment('伝言タイトル');
             $table->text('message')->comment('伝言内容');
             $table->unsignedInteger('create_user_id')->comment('伝言作成ユーザーID');
-//            $table->boolean('del_flg')->comment('削除フラグ')->default(false);
             $table->softDeletes();  // ソフトデリートカラムを追加
             $table->timestamps();
 

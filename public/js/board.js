@@ -294,16 +294,14 @@ function setUpBoard() {
 
             console.log("伝言新規作成：", data);
 
-            $('.dialog').fadeOut(500);
-
-            $('.board-top').empty();
-            startLoading($('.board-top'));
-
+            startDialogLoading();
             getResponse('message', data, false, 'POST').done(function (response) {
+                closeCommonDialog();
+                $('.board-top').empty();
                 // 参加者一覧を最新化する
                 showBoard(dgb_id, false);
             }).always(function () {
-                stopLoading($('.board-top'));
+                stopDialogLoading();
             });
 
         });
