@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\CommonBoardRequest;
 use App\Http\Requests\UpdateManageRequest;
 
 use App\models\St_dgb;
@@ -17,11 +18,8 @@ class BoardManageController extends Controller
     /**
      * 伝言板管理画面を表示する
      */
-    public function index(Request $request)
+    public function index(CommonBoardRequest $request)
     {
-        $request->validate([
-            'dgb_id' => 'required|integer'
-        ]);
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
         $dgb_id = $request->input('dgb_id');

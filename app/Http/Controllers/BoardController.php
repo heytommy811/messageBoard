@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Requests\CommonBoardRequest;
 use App\Http\Requests\CreateBoardRequest;
 
 use App\models\St_dgb;
@@ -43,12 +44,8 @@ class BoardController extends Controller
     /**
      * 伝言板IDで指定した伝言版の伝言一覧を表示する
      */
-    public function index(Request $request)
+    public function index(CommonBoardRequest $request)
     {
-        $request->validate([
-            'dgb_id' => 'required|integer'
-        ]);
-
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
 
@@ -77,11 +74,8 @@ class BoardController extends Controller
     /**
      * 伝言板参加画面を表示する
      */
-    public function join(Request $request, $dgb_id)
+    public function join(CommonBoardRequest $request, $dgb_id)
     {
-        $request->validate([
-            'dgb_id' => 'required|integer'
-        ]);
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
 

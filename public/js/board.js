@@ -344,16 +344,15 @@ function setUpBoard() {
     function showShare(dgb_id) {
         let template = $('.template.share').clone();
         showCommonDialog('伝言板を共有する', template.children());
-        startLoading($('.dialog .dialog-contents-inner'));
+        startDialogLoading();
         getResponse('share', { dgb_id: dgb_id }, false, 'POST').then(function (response) {
-
             console.log("共有URL：", response);
-
             $('.dialog .share_board input[type=text]').val(response.share_url);
-
             $('.dialog .share_board').css('visibility', 'visible');
         }).always(function () {
-            stopLoading($('.dialog .dialog-contents-inner'));
+            stopDialogLoading();
+        }).fail(function () {
+            closeCommonDialog();
         });
     }
 

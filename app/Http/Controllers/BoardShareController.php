@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+
+use App\Http\Requests\CommonBoardRequest;
+
 use App\models\St_dgb;
 use App\models\St_dgm;
 use App\models\St_dgs;
@@ -23,7 +26,7 @@ class BoardShareController extends Controller
     /**
      * 伝言板の共有URLを取得する
      */
-    public function store(Request $request)
+    public function store(CommonBoardRequest $request)
     {
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);
