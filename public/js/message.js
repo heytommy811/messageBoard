@@ -136,6 +136,11 @@ function setUpMessage() {
     // コメント送信ボタン押下イベント
     $('.dialog').on('click', '.comment button.send', function (e) {
 
+        if (!$('.dialog .comment textarea').val()) {
+            setTextareaError($('.dialog .comment textarea'), 'コメントを入力してください');
+            return;
+        }
+
         const data = {
             dgn_id: $('.board-top').data('dgn_id'),
             comment: $('.dialog .comment textarea').val(),
@@ -146,10 +151,12 @@ function setUpMessage() {
         $('.comment-icon').addClass('send');
 
         console.log("コメント送信処理：", data);
-        $('.dialog').fadeOut(500);
-        startLoading();
-        getResponse('comment', data, false, 'POST').then(refreshCommentList).always(function () {
-            stopLoading();
+        startDialogLoading();
+        getResponse('comment', data, false, 'POST').then(function (response) {
+            refreshCommentList(response);
+            closeCommonDialog();
+        }).always(function () {
+            stopDialogLoading();
         });
 
     });

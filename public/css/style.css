@@ -722,10 +722,12 @@ h2.title.icon::before {
     border-color: rgba(255, 90, 90, 1) !important;
     color: rgba(255, 90, 90, 1) !important;
 }
-.text-error textarea {
+.text-error textarea,
+.textarea-error textarea {
     border-bottom: solid .5px rgba(255, 90, 90, 1) !important;
 }
-.text-error {
+.text-error,
+.textarea-error {
     position: relative;
 }
 .text-error::before {
@@ -754,6 +756,23 @@ h2.title.icon::before {
     border-radius: 3px;
     font-size: .7em;
     font-weight: normal;
+    z-index: 999;
+}
+.textarea-error::after {
+    content: attr(data-message);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    background: rgba(255, 90, 90, 1);
+    color: #fff;
+    border-radius: 3px;
+    font-size: .7em;
+    font-weight: normal;
+    transform: translate(-50%, -50%);
     z-index: 999;
 }
 .text-error > .input-label-wrapper > label {

@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+
+use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\DeleteCommentRequest;
+
 use App\models\St_dgn;
 use App\models\St_cmt;
 
@@ -17,7 +21,7 @@ class CommentController extends Controller
     /**
      * 非同期でコメントを投稿し、最新のコメント一覧を取得する
      */
-    public function store(Request $request)
+    public function store(CreateCommentRequest $request)
     {
 
         // ユーザーのセッション情報を取得
@@ -41,7 +45,7 @@ class CommentController extends Controller
     /**
      * コメントを削除します
      */
-    public function destory(Request $request) {
+    public function destory(DeleteCommentRequest $request) {
         
         // ユーザーのセッション情報を取得
         $user = $this->getUserSession($request);

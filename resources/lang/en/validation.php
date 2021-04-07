@@ -132,6 +132,14 @@ return [
             'required' => 'パラメータが不正です。',
             'integer' => 'パラメータが不正です。',
         ],
+        'dgn_id' => [
+            'required' => 'パラメータが不正です。',
+            'integer' => 'パラメータが不正です。',
+        ],
+        'cmt_id' => [
+            'required' => 'パラメータが不正です。',
+            'integer' => 'パラメータが不正です。',
+        ],
     ],
 
     /*
@@ -156,6 +164,7 @@ return [
         'file' => 'アイコン',
         'password_before' => '変更前パスワード',
         'password_after' => '変更後パスワード',
+        'comment' => 'コメント'
     ],
 
 ];

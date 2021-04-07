@@ -297,6 +297,8 @@ $(document).ready(function () {
     $('.dialog').on('input', 'textarea', function (e) {
         $(this).removeClass('text-error');
         $(this).parent().removeClass('text-error');
+        $(this).removeClass('textarea-error');
+        $(this).parent().removeClass('textarea-error');
     });
     $('.dialog').on('input', 'input[type=password]', function (e) {
         $(this).removeClass('text-error');
@@ -918,4 +920,14 @@ function scrollTop() {
 function setTextError(text, message) {
     text.parent().attr('data-message', message);
     text.parent().addClass('text-error');
+}
+
+/**
+ * テキストエリアにエラーメッセージを表示する
+ * @param {*} text 
+ * @param {*} message 
+ */
+ function setTextareaError(text, message) {
+    text.parent().attr('data-message', message);
+    text.parent().addClass('textarea-error');
 }
