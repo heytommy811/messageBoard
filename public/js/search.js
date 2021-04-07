@@ -16,12 +16,14 @@ function showSearch(keyword, skipHistory) {
         $('header .menu li').removeClass('active');
         $('header .menu li.search').addClass('active');
         $('.search-keyword input').val(keyword);
-        searchKeyword = keyword;
-        search({
-            keyword: keyword,
-            skipHistory: true,
-            currentPageIndex: 0
-        });
+        if (keyword !== undefined) {
+            searchKeyword = keyword;
+            search({
+                keyword: keyword,
+                skipHistory: true,
+                currentPageIndex: 0
+            });
+        }
         // 検索キーワードにフォーカスインする
         setTimeout(function () {
             $('.search-keyword input').focus();
@@ -38,7 +40,7 @@ function setUpSearch() {
 
     // ヘッダーメニューの検索ボタン押下時
     $('header .menu li.search').click(function () {
-        showSearch(null, false);
+        showSearch(undefined, false);
     });
 
     // 検索ボタン押下時のイベント
