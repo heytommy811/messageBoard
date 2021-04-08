@@ -361,7 +361,7 @@ function initialize() {
             showMessage(parameters.m, true);
             break;
         case 'search':
-            showSearch(parameters.keyword, true);
+            showSearch(parameters.keyword ? parameters.keyword : undefined, true);
             break;
         default:
             console.error('不正なURLです。');
@@ -377,8 +377,8 @@ function showHome(skipHistory) {
     refreshTop();
     $('header .menu li').removeClass('active');
     $('header .menu li.home').addClass('active');
-    $('.content.search').animate({ left: '100%' }, 200);
     closeBoard();
+    closeSearch();
     if (!skipHistory) {
         addHistory('');
     }
@@ -407,9 +407,15 @@ function replaceHistory(query) {
  */
 function closeBoard() {
     $('.content.board').animate({ top: '100%' }, 200);
-    setTimeout(function () {
-        $('.content.board').hide();
-    }, 200);
+    $('.content.board').hide();
+}
+
+/**
+ * 検索ページを閉じる
+ */
+function closeSearch() {
+    $('.content.search').animate({ left: '100%' }, 200);
+    $('.content.search').hide();
 }
 
 /**

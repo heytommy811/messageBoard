@@ -6,9 +6,11 @@ function showSearch(keyword, skipHistory) {
 
     // 履歴を追加
     if (!skipHistory) {
-        addHistory('?page=search&keyword=' + keyword);
+        addHistory('?page=search&keyword=' + (keyword === undefined ? '' : keyword));
     }
 
+    closeBoard();
+    $('.content.search').show();
     const left = $('.content.search').css('left').replace('px', '');
     if (0 < left) {
         // 検索を表示する
@@ -27,7 +29,6 @@ function showSearch(keyword, skipHistory) {
         // 検索キーワードにフォーカスインする
         setTimeout(function () {
             $('.search-keyword input').focus();
-            closeBoard();
         }, 200);
         $('.massage-board-list').hide(200);
     }

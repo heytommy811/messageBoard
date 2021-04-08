@@ -15,6 +15,7 @@ function openBoardPage() {
 function showBoard(dgb_id, skipHistory) {
 
     // 伝言ページを開く
+    closeSearch();
     openBoardPage();
 
     if (!skipHistory) {
