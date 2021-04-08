@@ -111,7 +111,7 @@ button.request {
 .search-result-page-next.disable,
 .search-result-page-prev.disable {
     cursor: default;
-    opacity: .7;
+    opacity: .5;
 }
 .search-result-page > ul > li.current {
     background-color: rgba(100, 100, 100, 1);
