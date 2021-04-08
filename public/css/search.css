@@ -35,7 +35,7 @@
     cursor: pointer;
 }
 .search-results {
-    margin-top: 30px;
+    margin: 30px;
 }
 .search-results ul.search-result-board {
     margin-top: 10px;
